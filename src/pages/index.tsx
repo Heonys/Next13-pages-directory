@@ -1,11 +1,53 @@
 import Header from "@/components/Header";
-import { Open_Sans } from "next/font/google";
-const sans = Open_Sans({ subsets: ["latin"] });
+import MapSection from "@/components/MapSection";
+import { FeedbackIcon, ShareIcon } from "@/components/icons";
+import Button from "@/components/ui/Button";
+import UseStore from "@/hooks/useStore";
+import { Store } from "@/types/store";
+import Link from "next/link";
+import { useEffect } from "react";
 
-export default function Home() {
+type Props = {
+  stores: Store[];
+};
+
+export default function Home({ stores }: Props) {
+  const { initializeStores } = UseStore();
+
+  useEffect(() => {
+    initializeStores(stores);
+  }, [initializeStores, stores]);
+
   return (
-    <main className={sans.className}>
-      <Header />
-    </main>
+    <>
+      <Header>
+        <div className="flex space-x-2">
+          <Button>
+            <Link href="">
+              <ShareIcon />
+            </Link>
+          </Button>
+          <Button>
+            <Link href="/feedback">
+              <FeedbackIcon />
+            </Link>
+          </Button>
+        </div>
+      </Header>
+
+      <main className="w-full h-full">
+        <MapSection />
+      </main>
+    </>
   );
+}
+
+export async function getStaticProps() {
+  const stores = (await import("../../public/stores.json")).default;
+  console.log(stores);
+
+  return {
+    props: { stores },
+    revalidate: 60 * 60,
+  };
 }

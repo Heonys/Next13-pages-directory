@@ -1,13 +1,9 @@
 import dynamic from "next/dynamic";
 
-const NoSSR = dynamic(() => import("@/components/NoSSR"), {
-  ssr: false,
-});
+// const NoSSR = dynamic(() => import(""), {
+//   ssr: false,
+// });
 
 export default function ClientSideRendering() {
-  return (
-    <div>
-      <NoSSR />
-    </div>
-  );
+  return <div>{/* <NoSSR /> */}</div>;
 }
