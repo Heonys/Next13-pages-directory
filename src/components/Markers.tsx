@@ -1,14 +1,16 @@
 import React from "react";
-import useSWR from "swr";
 import Marker from "./Marker";
-import { Store } from "@/types/store";
-import { MAP_KEY } from "@/hooks/useMap";
-import { STORE_KEY } from "@/hooks/useStore";
-import { ImageIcon, NaverMap } from "@/types/map";
+import useMap from "@/hooks/useMap";
+import useStores from "@/hooks/useStore";
+import { ImageIcon } from "@/types/map";
+import useCurrentStore from "@/hooks/useCurrentStore";
 
 const Markers = () => {
-  const { data: map } = useSWR<NaverMap>(MAP_KEY);
-  const { data: stores } = useSWR<Store[]>(STORE_KEY);
+  const { map } = useMap();
+  const { data: stores } = useStores();
+
+  const { setCurrentStore, clearCurrentStore, currentStore } =
+    useCurrentStore();
 
   if (!map || !stores) return null;
   return (
@@ -18,11 +20,21 @@ const Markers = () => {
           <Marker
             map={map}
             coordinates={store.coordinates}
-            icon={generateStoreMarkerIcon(store.season)}
+            icon={generateStoreMarkerIcon(store.season, false)}
             key={store.nid}
+            onClick={() => setCurrentStore(store)}
           />
         );
       })}
+      {currentStore && (
+        <Marker
+          map={map}
+          coordinates={currentStore.coordinates}
+          icon={generateStoreMarkerIcon(currentStore.season, true)}
+          key={currentStore.nid}
+          onClick={clearCurrentStore}
+        />
+      )}
     </>
   );
 };
@@ -36,10 +48,13 @@ const SCALE = 2 / 3;
 const SCALED_MARKER_WIDTH = MARKER_WIDTH * SCALE;
 const SCALED_MARKER_HEIGHT = MARKER_HEIGHT * SCALE;
 
-export function generateStoreMarkerIcon(markerIndex: number): ImageIcon {
+export function generateStoreMarkerIcon(
+  markerIndex: number,
+  isSelected: boolean
+): ImageIcon {
   /** https://navermaps.github.io/maps.js.ncp/docs/tutorial-8-marker-retina-sprite.example.html */
   return {
-    url: "images/markers.png",
+    url: isSelected ? "images/markers-selected.png" : "images/markers.png",
     size: new naver.maps.Size(SCALED_MARKER_WIDTH, SCALED_MARKER_HEIGHT),
     origin: new naver.maps.Point(SCALED_MARKER_WIDTH * markerIndex, 0),
     scaledSize: new naver.maps.Size(

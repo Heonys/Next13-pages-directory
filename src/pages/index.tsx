@@ -1,10 +1,8 @@
+import DetailSection from "@/components/DetailSection";
 import Header from "@/components/Header";
 import MapSection from "@/components/MapSection";
-import { FeedbackIcon, ShareIcon } from "@/components/icons";
-import Button from "@/components/ui/Button";
 import UseStore from "@/hooks/useStore";
 import { Store } from "@/types/store";
-import Link from "next/link";
 import { useEffect } from "react";
 
 type Props = {
@@ -20,23 +18,10 @@ export default function Home({ stores }: Props) {
 
   return (
     <>
-      <Header>
-        <div className="flex space-x-2">
-          <Button>
-            <Link href="">
-              <ShareIcon />
-            </Link>
-          </Button>
-          <Button>
-            <Link href="/feedback">
-              <FeedbackIcon />
-            </Link>
-          </Button>
-        </div>
-      </Header>
-
-      <main className="w-full h-full">
+      <Header />
+      <main className="relative w-full h-full overflow-hidden">
         <MapSection />
+        <DetailSection />
       </main>
     </>
   );
@@ -44,8 +29,6 @@ export default function Home({ stores }: Props) {
 
 export async function getStaticProps() {
   const stores = (await import("../../public/stores.json")).default;
-  console.log(stores);
-
   return {
     props: { stores },
     revalidate: 60 * 60,
