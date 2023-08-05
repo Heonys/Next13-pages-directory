@@ -4,6 +4,7 @@ import MapSection from "@/components/MapSection";
 import UseStore from "@/hooks/useStore";
 import { Store } from "@/types/store";
 import { useEffect } from "react";
+import { NextSeo } from "next-seo";
 
 type Props = {
   stores: Store[];
@@ -18,6 +19,10 @@ export default function Home({ stores }: Props) {
 
   return (
     <>
+      <NextSeo
+        title="next-pages-directory"
+        description="naver dynamic map application"
+      />
       <Header />
       <main className="relative w-full h-full overflow-hidden">
         <MapSection />

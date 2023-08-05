@@ -27,15 +27,26 @@ export default function Header({ children }: Props) {
   return (
     <header className="p-2">
       <div className="flex items-center justify-between">
-        <Link href="/" onClick={resetMapOptions} className="shadow-lg p-1">
-          <Image src={naver} alt="naver" width={110} height={20} />
+        <Link
+          href="/"
+          onClick={resetMapOptions}
+          className="shadow-lg p-1"
+          aria-label="redirect home"
+        >
+          <Image
+            src={naver}
+            alt="naver"
+            width={110}
+            height={20}
+            className="object-cover"
+          />
         </Link>
         <div className="flex space-x-2">
           <Button onClick={replaceAndCopyUrl}>
             <ShareIcon />
           </Button>
           <Button>
-            <Link href="/feedback">
+            <Link href="/feedback" aria-label="redirect feedback">
               <FeedbackIcon />
             </Link>
           </Button>

@@ -1,7 +1,8 @@
 import useCurrentStore from "@/hooks/useCurrentStore";
 import styles from "../../public/styles/detail.module.scss";
-import { IoIosArrowUp } from "react-icons/io";
 import { useState } from "react";
+import DetailContent from "./DetailContent";
+import DetailHeader from "./DetailHeader";
 
 const DetailSection = () => {
   const { currentStore } = useCurrentStore();
@@ -13,17 +14,12 @@ const DetailSection = () => {
         currentStore ? styles.selected : ""
       } `}
     >
-      <div className={styles.header}>
-        <button
-          className={styles.arrowButton}
-          onClick={() => setExpanded((prev) => !prev)}
-          disabled={!currentStore}
-        >
-          <IoIosArrowUp size={20} color="#666666" />
-        </button>
-        {!currentStore && <p className={styles.title}>매장을 선택해주세요</p>}
-        {currentStore && <p className={styles.title}>{currentStore.name}</p>}
-      </div>
+      <DetailHeader
+        currentStore={currentStore}
+        expanded={expanded}
+        onClick={() => setExpanded((prev) => !prev)}
+      />
+      <DetailContent currentStore={currentStore} expanded={expanded} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <SWRConfigProvider>
-        <body className="w-full max-w-xl mx-auto">
+        <body className="w-full max-w-xl mx-auto relative">
           <Main />
           <NextScript />
         </body>
