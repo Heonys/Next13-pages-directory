@@ -13,6 +13,16 @@ const seoConfig = {
       href: "/favicon.ico",
     },
   ],
+  additionalMetaTags: [
+    {
+      name: "naver-site-verification",
+      content: "de06af3063268667db5ccbdeac27db27d341b71d",
+    },
+    // {
+    //   name: "google-site-verification",
+    //   content: "O0r_20aU1JVk1sbI7E50r6RXiTRFrN8jG_a3uSeG4A0",
+    // },
+  ],
 };
 
 export default seoConfig;
