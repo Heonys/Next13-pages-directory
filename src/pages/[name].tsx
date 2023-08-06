@@ -31,6 +31,9 @@ const DetailPage: NextPage<Props> = ({ store }) => {
         title="detail page"
         description="매장에 대한 자세히 정보"
         canonical="https://next13-dynamic-map.vercel.app/"
+        openGraph={{
+          url: "https://next13-dynamic-map.vercel.app/",
+        }}
       />
       <div
         className={`${styles.detailSection} ${styles.expanded} ${styles.selected} `}

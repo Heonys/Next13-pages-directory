@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <DefaultSeo {...SEO} />
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-PMBX725CN0`}
+        src={`https://www.googletagmanager.com/gtag/js?id=G-C28B6FW182`}
       />
       <Script
         id="gtag-init"

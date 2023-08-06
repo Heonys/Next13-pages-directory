@@ -23,6 +23,9 @@ export default function Home({ stores }: Props) {
         title="next-pages-directory"
         description="naver dynamic map application"
         canonical="https://next13-dynamic-map.vercel.app/"
+        openGraph={{
+          url: "https://next13-dynamic-map.vercel.app/",
+        }}
       />
       <Header />
       <main className="relative w-full h-full overflow-hidden">
@@ -34,7 +37,10 @@ export default function Home({ stores }: Props) {
 }
 
 export async function getStaticProps() {
-  const stores = (await import("../../public/stores.json")).default;
+  const stores = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/stores`
+  ).then((response) => response.json());
+
   return {
     props: { stores },
     revalidate: 60 * 60,

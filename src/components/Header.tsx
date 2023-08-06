@@ -39,6 +39,7 @@ export default function Header({ children }: Props) {
             width={110}
             height={20}
             className="object-cover"
+            priority
           />
         </Link>
         <div className="flex space-x-2">

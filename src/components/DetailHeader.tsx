@@ -29,7 +29,7 @@ export default function DetailHeader({
       {!currentStore && <p className={styles.title}>매장을 선택해주세요</p>}
       {currentStore && (
         <div className={styles.flexRow}>
-          <p className={styles.title}>{currentStore.name}</p>
+          <h1 className={styles.title}>{currentStore.name}</h1>
           <button
             className={headerStyles.box}
             onClick={() => {
