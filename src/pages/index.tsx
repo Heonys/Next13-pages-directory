@@ -22,6 +22,7 @@ export default function Home({ stores }: Props) {
       <NextSeo
         title="next-pages-directory"
         description="naver dynamic map application"
+        canonical="https://next13-dynamic-map.vercel.app/"
       />
       <Header />
       <main className="relative w-full h-full overflow-hidden">

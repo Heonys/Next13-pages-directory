@@ -18,10 +18,10 @@ const seoConfig = {
       name: "naver-site-verification",
       content: "de06af3063268667db5ccbdeac27db27d341b71d",
     },
-    // {
-    //   name: "google-site-verification",
-    //   content: "O0r_20aU1JVk1sbI7E50r6RXiTRFrN8jG_a3uSeG4A0",
-    // },
+    {
+      name: "google-site-verification",
+      content: "LYL5-ebau488qs0-TSVvu3h1OkkN83EX__fB16RzbUg",
+    },
   ],
 };
 
